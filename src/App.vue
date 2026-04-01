@@ -7,17 +7,22 @@ import NavBar from './components/NavBar.vue'
   <v-app>
     <NavBar />
     <v-main class="main-content">
-      <RouterView />
+      <div class="page-wrapper">
+        <transition name="slide" mode="out-in">
+          <RouterView :key="$route.fullPath" />
+        </transition>
+      </div>
     </v-main>
   </v-app>
 </template>
 
 <style scoped>
 .main-content {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 30px;
 }
 
 header {
@@ -80,5 +85,47 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+}
+
+.page-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.page-content {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.slide-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
 }
 </style>
