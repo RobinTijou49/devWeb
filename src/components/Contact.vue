@@ -1,6 +1,6 @@
 <template>
   <v-card class="contact-card">
-    <h1>Contact Us</h1>
+    <h1>Contact</h1>
 
     <v-form v-model="valid" class="contact-form">
       <div class="row">
