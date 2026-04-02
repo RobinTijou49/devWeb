@@ -45,8 +45,8 @@ jobs:
           key: ${{ secrets.VPS_KEY }}
           port: 22
           script: |
-            rm -rf /var/www/vue-app/*
-            cp -r /tmp/vue-deploy/* /var/www/vue-app/
+            sudo rm -rf /var/www/vue-app/*
+            sudo cp -r /tmp/vue-deploy/* /var/www/vue-app/
             sudo chown -R www-data:www-data /var/www/vue-app
             sudo systemctl restart nginx
             rm -rf /tmp/vue-deploy
