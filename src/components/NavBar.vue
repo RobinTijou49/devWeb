@@ -6,6 +6,7 @@
       <router-link to="/">Accueil</router-link>
       <router-link to="/multiple-task">Tâches</router-link>
       <router-link to="/api">Api</router-link>
+      <router-link to="/resources">Ressources Internes</router-link>
       <router-link to="/about">À propos</router-link>
       <router-link to="/contact">Contact</router-link>
     </div>

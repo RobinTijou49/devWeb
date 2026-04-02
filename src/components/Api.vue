@@ -1,11 +1,13 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { fetchItems } from '../services/api.js'
 
 const data = ref([])
 const loading = ref(true)
 const error = ref(null)
+const search = ref('') // il manquait ça
 
+// Récupération des données
 const getData = async () => {
   loading.value = true
   error.value = null
@@ -18,6 +20,14 @@ const getData = async () => {
   }
 }
 
+// Filtrer les données selon le texte de recherche
+const filteredData = computed(() => {
+  if (!search.value) return data.value
+  return data.value.filter((commune) =>
+    commune.nom.toLowerCase().includes(search.value.toLowerCase()),
+  )
+})
+
 onMounted(getData)
 </script>
 
@@ -27,32 +37,44 @@ onMounted(getData)
 
     <div v-if="loading">Chargement…</div>
     <div v-else-if="error">Erreur: {{ error }}</div>
-    <table v-else cellspacing="0" cellpadding="5">
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Code</th>
-          <th>Codes Postaux</th>
-          <th>Siren</th>
-          <th>Code EPCI</th>
-          <th>Code Département</th>
-          <th>Code Région</th>
-          <th>Population</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="region in data" :key="region.code">
-          <td>{{ region.nom }}</td>
-          <td>{{ region.code }}</td>
-          <td>{{ region.codesPostaux }}</td>
-          <td>{{ region.siren }}</td>
-          <td>{{ region.codeEpci }}</td>
-          <td>{{ region.codeDepartement }}</td>
-          <td>{{ region.codeRegion }}</td>
-          <td>{{ region.population }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-else>
+      <input
+        type="text"
+        v-model="search"
+        placeholder="Rechercher une commune..."
+        style="margin-bottom: 10px; padding: 5px; width: 250px"
+      />
+
+      <table cellspacing="0" cellpadding="5">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Code</th>
+            <th>Codes Postaux</th>
+            <th>Siren</th>
+            <th>Code EPCI</th>
+            <th>Code Département</th>
+            <th>Code Région</th>
+            <th>Population</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="commune in filteredData" :key="commune.code">
+            <td>{{ commune.nom }}</td>
+            <td>{{ commune.code }}</td>
+            <td>{{ commune.codesPostaux }}</td>
+            <td>{{ commune.siren }}</td>
+            <td>{{ commune.codeEpci }}</td>
+            <td>{{ commune.codeDepartement }}</td>
+            <td>{{ commune.codeRegion }}</td>
+            <td>{{ commune.population }}</td>
+          </tr>
+          <tr v-if="filteredData.length === 0">
+            <td colspan="8">Aucune commune trouvée.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -64,6 +86,7 @@ table {
 }
 th {
   background-color: #493a3a;
+  color: white;
 }
 td,
 th {
