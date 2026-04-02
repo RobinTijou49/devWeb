@@ -25,15 +25,15 @@ jobs:
         run: npm run build
 
       - name: Deploy to VPS
-          uses: appleboy/ssh-action@v0.1.7
-          with:
-            host: ${{ secrets.VPS_HOST }}
-            username: ${{ secrets.VPS_USER }}
-            key: ${{ secrets.VPS_KEY }}
-            port: 22
-            debug: true
-            script: |
-              rm -rf /var/www/vue-app/*
-              cp -r ./dist/* /var/www/vue-app/
-              sudo chown -R www-data:www-data /var/www/vue-app
-              sudo systemctl restart nginx
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          port: 22
+          debug: true
+          script: |
+            rm -rf /var/www/vue-app/*
+            cp -r ./dist/* /var/www/vue-app/
+            sudo chown -R www-data:www-data /var/www/vue-app
+            sudo systemctl restart nginx
