@@ -35,6 +35,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }} # IP de ton VPS
           username: ${{ secrets.VPS_USER }} # Utilisateur (ex: rtijou)
           key: ${{ secrets.VPS_KEY }} # Clé privée SSH (Unix line endings!)
+          port: 22
           debug: true # Active les logs détaillés
           script: |
             # Nettoyer l'ancien build
