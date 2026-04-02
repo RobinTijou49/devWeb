@@ -3,46 +3,50 @@ name: Deploy Vue.js to VPS
 on:
   push:
     branches:
-      - main # Branche de déploiement
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Récupérer le code du repo
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ Installer Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20' # version de ton projet
+          node-version: '20'
 
-      # 3️⃣ Installer les dépendances
       - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Build Vue.js
       - name: Build project
         run: npm run build
 
-      # 5️⃣ Déploiement sur le VPS
-      - name: Deploy to VPS via SSH
+      # Copier le dist depuis le runner vers le VPS
+      - name: Copy build to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          port: 22
+          source: 'dist/*'
+          target: '/tmp/vue-deploy'
+          strip_components: 1 # supprime le préfixe "dist/" à la copie
+
+      # Déployer sur le VPS
+      - name: Deploy on VPS via SSH
         uses: appleboy/ssh-action@v0.1.8
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_KEY }}
           port: 22
-          debug: true
           script: |
-            # Nettoyer l'ancien build
             rm -rf /var/www/vue-app/*
-            # Copier le nouveau build
-            cp -r ./dist/* /var/www/vue-app/
-            # Changer propriétaire pour nginx
+            cp -r /tmp/vue-deploy/* /var/www/vue-app/
             sudo chown -R www-data:www-data /var/www/vue-app
-            # Redémarrer Nginx
             sudo systemctl restart nginx
+            rm -rf /tmp/vue-deploy
