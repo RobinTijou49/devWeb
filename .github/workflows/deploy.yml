@@ -32,11 +32,11 @@ jobs:
       - name: Deploy to VPS via SSH
         uses: appleboy/ssh-action@v0.1.8
         with:
-          host: ${{ secrets.VPS_HOST }} # IP de ton VPS
-          username: ${{ secrets.VPS_USER }} # Utilisateur (ex: rtijou)
-          key: ${{ secrets.VPS_KEY }} # Clé privée SSH (Unix line endings!)
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
           port: 22
-          debug: true # Active les logs détaillés
+          debug: true
           script: |
             # Nettoyer l'ancien build
             rm -rf /var/www/vue-app/*
