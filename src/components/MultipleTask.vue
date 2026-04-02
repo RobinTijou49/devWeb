@@ -4,7 +4,7 @@
       <h1>{{ task.title }}</h1>
       <p>{{ task.description }}</p>
 
-      <v-btn color="primary" @click="view = 'subtasks'"> Start </v-btn>
+      <v-btn color="primary" @click="view = 'subtasks'"> Commencer </v-btn>
     </div>
 
     <div v-if="view === 'subtasks'">
