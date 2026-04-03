@@ -42,7 +42,15 @@ onMounted(getData)
         type="text"
         v-model="search"
         placeholder="Rechercher une commune..."
-        style="margin-bottom: 10px; padding: 5px; width: 250px"
+        style="
+          margin-bottom: 10px;
+          padding: 5px;
+          width: 250px;
+          border-radius: 15px;
+          border: 1px solid var(--text);
+          background-color: var(--bg);
+          color: var(--text);
+        "
       />
 
       <table cellspacing="0" cellpadding="5">

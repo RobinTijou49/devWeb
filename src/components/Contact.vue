@@ -79,6 +79,7 @@ export default {
   max-width: 100%;
   padding: 30px;
   border-radius: 20px;
+  border: 1px solid var(--text);
 }
 
 h1 {

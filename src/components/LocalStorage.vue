@@ -36,9 +36,10 @@ const remove = () => {
 input {
   padding: 10px;
   border: 1px solid var(--text);
-  border-radius: 4px;
+  border-radius: 15px;
   margin-right: 10px;
   width: 250px;
+  background-color: var(--bg);
 }
 
 .btn {

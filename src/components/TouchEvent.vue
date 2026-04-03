@@ -17,7 +17,7 @@ const handleTouch = (event) => {
         height: 100px;
         background: var(--bg);
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
