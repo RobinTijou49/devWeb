@@ -56,20 +56,33 @@ export default {
       currentSubtaskIndex: 0,
 
       task: {
-        title: 'Créer un formulaire multi-étapes',
-        description: 'Suis les étapes pour construire ton formulaire.',
+        title: 'Faire un cheesecake',
+        description: 'Suis les étapes pour avoir un super cheesecake !',
         subtasks: [
           {
-            title: 'Créer la structure',
-            description: 'Mettre en place les composants et la base Vue.',
+            title: 'Préchauffer le four',
+            description:
+              'Avant toute chose, allumez votre four à 180°C (thermostat 6) et beurrez le plat dans lequel va venir se lover notre petit cheesecake',
           },
           {
-            title: 'Ajouter les champs',
-            description: 'Créer les inputs et gérer les v-model.',
+            title: 'Préparation de la base',
+            description:
+              "Écrasez les biscuits dans un saladier et mélangez-les avec le beurre fondu et un peu de muscade (si vous aimez). Repartissez cette pâte au fond de votre plat en prenant soin de l'aplatir avec une cuillère et réservez au frigo",
           },
           {
-            title: 'Gérer la navigation',
-            description: 'Ajouter les boutons suivant / précédent.',
+            title: 'Préparation de la garniture',
+            description:
+              "A l'aide d'un fouet (ou d'un robot de cuisine) battez le fromage blanc pour le rendre bien lisse et ajoutez la farine, les œufs et le sucre. Vous pouvez maintenant laisser votre crème nature ou bien rajouter des zestes de citron ou de la vanille par exemple pour lui donner du goût.",
+          },
+          {
+            title: 'Cuisson',
+            description:
+              " Déposez délicatement votre préparation sur la base de biscuits & hop, direction le four pour une petite heure de cuisson (l'astuce pour savoir si le cheesecake est bien cuit ? Lorsque la préparation au fromage est bien ferme) ",
+          },
+          {
+            title: 'Conseil de dégustation',
+            description:
+              ' Laissez refroidir et dégustez froid. Ajoutez des fruits ou bien un coulis pour pimper le tout ! Fraises, coulis de caramel ou de chocolat... il y en a pour tous les goûts ! ',
           },
         ],
       },
