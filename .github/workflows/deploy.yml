@@ -1,12 +1,13 @@
-name: Deploy Vue.js to VPS
+name: CI/CD Vue.js to VPS
 
 on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
-  build-and-deploy:
+  test-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,14 +18,41 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
+      - name: Lint
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm run test:unit
+
       - name: Build project
         run: npm run build
 
-      # Copier le dist depuis le runner vers le VPS
+      # Sauvegarde du build pour le job deploy
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+  deploy:
+    needs: test-build
+    runs-on: ubuntu-latest
+
+    # Déploiement uniquement sur main (pas sur PR)
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+
       - name: Copy build to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -34,9 +62,8 @@ jobs:
           port: 22
           source: 'dist/*'
           target: '/tmp/vue-deploy'
-          strip_components: 1 # supprime le préfixe "dist/" à la copie
+          strip_components: 1
 
-      # Déployer sur le VPS
       - name: Deploy on VPS via SSH
         uses: appleboy/ssh-action@v0.1.8
         with:
