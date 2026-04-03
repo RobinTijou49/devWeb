@@ -1,3 +1,9 @@
+<script setup>
+import { useTheme } from '../assets/useTheme.js'
+
+const { theme, toggleTheme } = useTheme()
+</script>
+
 <template>
   <nav class="navbar">
     <h1 class="logo">TP VueJs</h1>
@@ -9,6 +15,7 @@
       <router-link to="/resources">Ressources Internes</router-link>
       <router-link to="/about">À propos</router-link>
       <router-link to="/contact">Contact</router-link>
+      <button @click="toggleTheme">Mode: {{ theme }}</button>
     </div>
   </nav>
 </template>

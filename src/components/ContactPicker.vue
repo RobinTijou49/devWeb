@@ -11,7 +11,20 @@ const getContacts = async () => {
 
 <template>
   <div>
-    <h3>Contact Picker</h3>
-    <button @click="getContacts">Choisir un contact</button>
+    <button class="btn" @click="getContacts">Choisir un contact</button>
   </div>
 </template>
+
+<style scoped>
+.btn {
+  padding: 10px 20px;
+  margin-right: 3px;
+  border: none;
+  border-radius: 20px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+</style>

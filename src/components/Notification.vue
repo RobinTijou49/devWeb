@@ -5,7 +5,7 @@ const sendNotification = () => {
   Notification.requestPermission().then((permission) => {
     if (permission === 'granted') {
       new Notification('Hello !', {
-        body: 'Ceci est une notification depuis Vue',
+        body: 'Notification depuis Vue',
       })
     }
   })
@@ -14,7 +14,20 @@ const sendNotification = () => {
 
 <template>
   <div>
-    <h3>Notification</h3>
-    <button @click="sendNotification">Envoyer une notification</button>
+    <button class="btn" @click="sendNotification">Envoyer une notification</button>
   </div>
 </template>
+
+<style scoped>
+.btn {
+  padding: 10px 20px;
+  margin-right: 3px;
+  border: none;
+  border-radius: 20px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+</style>

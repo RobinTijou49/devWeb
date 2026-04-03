@@ -8,6 +8,36 @@
   font-weight: normal;
 }
 
+:root {
+  --bg: white;
+  --text: black;
+}
+
+/* Dark mode */
+.dark {
+  --bg: #121212;
+  --text: white;
+}
+
+/* Utilisation */
+body,
+#app,
+.v-application,
+.v-application .v-main {
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.v-application .v-sheet,
+.v-application .v-card,
+.v-application .v-toolbar {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+}
+
 a,
 .green {
   text-decoration: none;

@@ -22,8 +22,8 @@ watch(
 
 <template>
   <div style="position: relative; display: inline-block">
-    <button @click="alerts++">Ajouter une alerte</button>
-    <button @click="alerts = 0">Supprimer les alertes</button>
+    <button class="btn" @click="alerts++">Ajouter une alerte</button>
+    <button class="btn btn-danger" @click="alerts = 0">Supprimer les alertes</button>
     <i class="fa fa-bell" style="font-size: 24px"></i>
     <span
       v-if="alerts > 0"
@@ -46,3 +46,29 @@ watch(
     </span>
   </div>
 </template>
+
+<style scoped>
+.btn {
+  padding: 10px 20px;
+  margin-right: 3px;
+  border: none;
+  border-radius: 20px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-danger {
+  background-color: #dc2626;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+}
+</style>

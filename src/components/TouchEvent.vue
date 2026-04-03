@@ -15,11 +15,13 @@ const handleTouch = (event) => {
       style="
         width: 200px;
         height: 100px;
-        background: #eee;
+        background: var(--bg);
         border: 1px solid #ccc;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: var(--text);
       "
     >
       {{ message }}

@@ -9,7 +9,6 @@
 
     <div v-if="view === 'subtasks'">
       <h2>Tâches</h2>
-
       <v-list>
         <v-list-item
           v-for="(sub, index) in task.subtasks"
@@ -21,7 +20,7 @@
         </v-list-item>
       </v-list>
 
-      <v-btn variant="text" @click="view = 'task'"> Retour </v-btn>
+      <v-btn color="error" @click="view = 'task'"> Retour </v-btn>
     </div>
 
     <div v-if="view === 'detail'">
@@ -29,7 +28,7 @@
       <p>{{ currentSubtask.description }}</p>
 
       <div class="actions">
-        <v-btn variant="text" :disabled="currentSubtaskIndex === 0" @click="prevSubtask">
+        <v-btn color="error" :disabled="currentSubtaskIndex === 0" @click="prevSubtask">
           Précédent
         </v-btn>
 
@@ -120,7 +119,24 @@ export default {
 }
 
 .subtask-item:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Enlève le fond par défaut de Vuetify sur les listes */
+.v-list,
+.v-list-item {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--text) !important;
+}
+
+.v-list-item {
+  border: 1px solid var(--text);
+  border-radius: 10px;
+}
+
+.subtask-item {
+  color: var(--text) !important;
 }
 
 .actions {

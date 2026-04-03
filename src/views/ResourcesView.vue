@@ -69,7 +69,7 @@ import TouchEvent from '@/components/TouchEvent.vue'
 }
 
 .resource-section {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border: 1px solid var(--text);
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -85,7 +85,7 @@ import TouchEvent from '@/components/TouchEvent.vue'
 }
 
 .section-title {
-  color: #2c3e50;
+  color: var(--text);
   font-size: 1.5rem;
   margin: 0 0 1rem 0;
   font-weight: 600;
@@ -94,9 +94,6 @@ import TouchEvent from '@/components/TouchEvent.vue'
 }
 
 .section-content {
-  background: rgb(0, 0, 0);
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 </style>

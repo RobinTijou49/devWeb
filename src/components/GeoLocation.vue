@@ -20,8 +20,21 @@ const getLocation = () => {
 
 <template>
   <div>
-    <h3>Géolocalisation</h3>
-    <button @click="getLocation">Obtenir ma position</button>
+    <button class="btn" @click="getLocation">Obtenir ma position</button>
     <p v-if="position.lat">Latitude: {{ position.lat }}, Longitude: {{ position.lon }}</p>
   </div>
 </template>
+
+<style scoped>
+.btn {
+  padding: 10px 20px;
+  margin-right: 3px;
+  border: none;
+  border-radius: 20px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+</style>
